@@ -9,10 +9,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; global var defination, if not used, please set it nil
-;; user home
+;; 
+;; the structure of emacs home
+;; ehome
+;;   |- .emacs
+;;   |- config
+;;   |- lisp
+;;   |- site-lisp
+;;
 (if (boundp 'UDISK)
     (defvar HOME UDISK)
   (defvar HOME (getenv "HOME")))
+
 (defvar EHOME (concat HOME "/ehome"))
 (defvar LHOME (concat HOME "/Linux"))
 (defvar CFGHOME EHOME)
@@ -27,18 +35,9 @@
 (add-to-list 'load-path (concat CFGHOME "/lisp"))
 (add-to-list 'load-path (concat CFGHOME "/config"))
 
-;;(load-file (concat CFGHOME "/config/cyliu-util.el"))
-;;(load-file (concat CFGHOME "/config/01init.el"))
-;;(load-file (concat CFGHOME "/config/02frame.el"))
-;;(load-file (concat CFGHOME "/config/03muse.el"))
-;;(load-file (concat CFGHOME "/config/04ide.el"))
-;;(load-file (concat CFGHOME "/config/05ecb.el"))
-;;(load-file (concat CFGHOME "/config/06vc.el"))
-;;(load-file (concat CFGHOME "/config/08org.el"))
-;;(load-file (concat CFGHOME "/config/cygwin.el"))
-
 (require 'cyliu-util)
 (require 'cyliu-init)
+(require 'cyliu-ide)
 ;;(require 'cyliu-frame)
 
 ;; (if (and (fboundp 'daemonp) (daemonp))
@@ -47,5 +46,3 @@
 ;;                 (with-selected-frame frame
 ;;                   (cyliu-frame-initialize))))
 ;;   (cyliu-frame-initialize))
-;;(cyliu-frame-initialize)
-;;(require 'sr-speedbar)

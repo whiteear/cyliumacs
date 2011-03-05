@@ -126,60 +126,6 @@
 (setq msf-abbrev-root (concat CFGHOME "/config/mode-abbrevs"))
 (msf-abbrev-load)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; cedet suite setting
-;; (add-to-list 'load-path (concat CFGHOME "/site-lisp/cedet-cvs/common"))
-;; ;; (require 'cedet)
-;; ;;(require 'ede)
-;; ;;(global-ede-mode t)
-;; (load-file (concat CFGHOME "/site-lisp/cedet-cvs/common/cedet.el"))
-
-;; ;; Enable EDE (Project Management) features
-;; (global-ede-mode 1)
-;; ;; Enable EDE for a pre-existing C++ project
-;; ;; (ede-cpp-root-project "NAME" :file "~/myproject/Makefile")
-
-
-;; ;; Enabling Semantic (code-parsing, smart completion) features
-;; ;; Select one of the following:
-
-;; ;; * This enables the database and idle reparse engines
-;; (semantic-load-enable-minimum-features)
-
-;; ;; * This enables some tools useful for coding, such as summary mode
-;; ;;   imenu support, and the semantic navigator
-;; (semantic-load-enable-code-helpers)
-
-;; ;; * This enables even more coding tools such as the nascent intellisense mode
-;; ;;   decoration mode, and stickyfunc mode (plus regular code helpers)
-;; ;; (semantic-load-enable-guady-code-helpers)
-
-;; ;; * This enables the use of Exuberent ctags if you have it installed.
-;; ;; (semantic-load-enable-all-exuberent-ctags-support)
-
-;; ;; Enable SRecode (Template management) minor-mode.
-;; ;; (global-srecode-minor-mode 1)
-
-;; (add-to-list 'semanticdb-project-roots (concat WORKSPACE "/vmo_monte_ML/src/vmoagent"))
-
-;; (global-semanticdb-minor-mode 1)
-;; ;; (semantic-add-system-include "d:/cygwin/usr/include/" 'c-mode)
-;; ;; (semantic-add-system-include "d:/cygwin/usr/include/" 'c++-mode)
-;; ;; (semantic-add-system-include "d:/GTK/include/" 'c-mode)
-;; ;; (semantic-add-system-include "d:/GTK/include/gtk-2.0/" 'c-mode)
-;; ;; (semantic-add-system-include "d:/GTK/include/glib-2.0/" 'c-mode)
-
-;; (setq semanticdb-default-save-directory (expand-file-name "~/.semanticdb"))
-;; (add-to-list 'semanticdb-project-system-databases
-;;              (semanticdb-create-database semanticdb-new-database-class "/usr/include"))
-;; (add-to-list 'semanticdb-project-system-databases
-;;              (semanticdb-create-database semanticdb-new-database-class
-;;                                          (concat WORKSPACE "/vmo_monte_ML/src/vmoagent")))
-
-;; (add-hook 'semantic-init-hooks 'semantic-idle-completions-mode)
-;; (setq-default semantic-idle-scheduler-idle-time 10)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; autopair setting
 (require 'autopair)
@@ -220,3 +166,5 @@
   ;(setq ac-sources (append ac-sources '(ac-source-ropemacs)))
   )
 ;;(add-hook 'python-mode-hook 'my-python-hook-mode)
+
+(provide 'cyliu-ide)
