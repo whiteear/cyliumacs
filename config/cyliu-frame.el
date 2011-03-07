@@ -192,13 +192,6 @@ Return only one group for each buffer."
 
 ;;(color-theme-pmade-gui)
 
-(defun make-some-files-read-only ()
-  "when file opened is of a certain mode, make it read only"
-  (when (memq major-mode '(c++-mode tcl-mode text-mode python-mode))
-    (toggle-read-only 1)))
-
-(add-hook 'find-file-hooks 'make-some-files-read-only)
-
 (defun qiang-font-existsp (font)
   (if (null (x-list-fonts font))
       nil t))

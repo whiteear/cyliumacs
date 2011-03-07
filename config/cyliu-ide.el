@@ -124,7 +124,7 @@
 (require 'msf-abbrev)
 (setq msf-abbrev-verbose t)
 (setq msf-abbrev-root (concat CFGHOME "/config/mode-abbrevs"))
-(msf-abbrev-load)
+;;(msf-abbrev-load)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; autopair setting

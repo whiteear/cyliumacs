@@ -233,4 +233,16 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+(defun make-some-files-read-only ()
+  "when file opened is of a certain mode, make it read only"
+  (when (memq major-mode '(c-mode c++-mode python-mode 
+                                  shell-script-mode text-mode
+                                  emacs-lisp-mode tcl-mode java-mode
+                                  org-mode xml-mode))
+    (toggle-read-only 1)))
+
+(add-hook 'find-file-hooks 'make-some-files-read-only)
+
 (provide 'cyliu-init)
