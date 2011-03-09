@@ -238,9 +238,9 @@
 (defun make-some-files-read-only ()
   "when file opened is of a certain mode, make it read only"
   (when (memq major-mode '(c-mode c++-mode python-mode diff-mode
-                                  shell-script-mode text-mode
+                                  shell-script-mode makefile-mode
                                   emacs-lisp-mode tcl-mode java-mode
-                                  org-mode xml-mode
+                                  org-mode xml-mode text-mode
                                   tex-mode html-mode))
     (toggle-read-only 1)))
 
