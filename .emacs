@@ -38,11 +38,11 @@
 (require 'cyliu-util)
 (require 'cyliu-init)
 (require 'cyliu-ide)
-;;(require 'cyliu-frame)
+(require 'cyliu-frame)
 
-;; (if (and (fboundp 'daemonp) (daemonp))
-;;     (add-hook 'after-make-frame-functions
-;;               (lambda (frame)
-;;                 (with-selected-frame frame
-;;                   (cyliu-frame-initialize))))
-;;   (cyliu-frame-initialize))
+(if (and (fboundp 'daemonp) (daemonp))
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (cyliu-init-frame))))
+  (cyliu-init-frame))
