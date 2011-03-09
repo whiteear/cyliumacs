@@ -237,10 +237,11 @@
 ;;
 (defun make-some-files-read-only ()
   "when file opened is of a certain mode, make it read only"
-  (when (memq major-mode '(c-mode c++-mode python-mode 
+  (when (memq major-mode '(c-mode c++-mode python-mode diff-mode
                                   shell-script-mode text-mode
                                   emacs-lisp-mode tcl-mode java-mode
-                                  org-mode xml-mode))
+                                  org-mode xml-mode
+                                  tex-mode html-mode))
     (toggle-read-only 1)))
 
 (add-hook 'find-file-hooks 'make-some-files-read-only)
