@@ -75,11 +75,13 @@
   (progn
     (add-to-list 'load-path (concat CFGHOME "/site-lisp/color-theme-6.6.0"))
     (require 'color-theme)
+    (set-variable 'color-theme-is-global nil)
     (color-theme-initialize)
     ;;(color-theme-classic)
     ;;(color-theme-dark-laptop)
     ;;(color-theme-gnome2)
-    (color-theme-blackboard)
+    ;;(color-theme-blackboard)
+    (color-theme-arjen)
     ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,13 +235,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (if (cyliu-is-gui-enabled)
       (progn
         (cyliu-gui-frame-keys)
-        ;;(cyliu-load-color-theme)
+        (cyliu-load-color-theme)
+        (set-frame-parameter nil 'alpha 50)
         (qiang-set-font
          '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=16"
-         '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
-        (message "go into gui branch."))
+         '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
     (progn
-      (color-theme-pmade-terminal)
-      (message "go into terminal branch"))))
+      (color-theme-pmade-terminal))))
 
 (provide 'cyliu-frame)
