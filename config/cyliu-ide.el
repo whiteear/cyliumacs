@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; $Id$
 ;; config emacs like an IDE
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -133,12 +133,34 @@
 (add-hook 'python-mode-hook #'(lambda () (autopair-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; yasnippet
+(add-to-list 'load-path 
+             (concat CFGHOME "/site-lisp/yasnippet-0.8.0"))
+(require 'yasnippet)
+;;(yas/initialize)
+(yas/load-directory (concat CFGHOME
+                            "/site-lisp/yasnippet-0.8.0/snippets"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; auto-complete setting
-(add-to-list 'load-path (concat EHOME "/lisp/auto-complete/"))
+(add-to-list 'load-path (concat CFGHOME "/lisp/auto-complete/"))
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat EHOME "/ehome/lisp/auto-complete/ac-dict"))
+(add-to-list 'ac-dictionary-directories (concat CFGHOME "/ehome/lisp/auto-complete/ac-dict"))
 (ac-config-default)
 (setq ac-disable-faces nil)
+
+(defface ac-yasnippet-candidate-face
+  '((t (:background "sandybrown" :foreground "black")))
+  "Face for yasnippet candidate.")
+(defface ac-yasnippet-selection-face
+  '((t (:background "coral3" :foreground "white")))
+  "Face for the yasnippet selected candidate.")
+(defvar ac-source-yasnippet
+  '((candidates . ac-yasnippet-candidates)
+	(action . yas/expand)
+	(candidate-face . ac-yasnippet-candidate-face)
+	(selection-face . ac-yasnippet-selection-face))
+  "Source for Yasnippet.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; pymacs setting

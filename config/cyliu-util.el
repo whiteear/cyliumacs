@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; $Id: cyliu-util.el,v 1.5 2010/01/29 10:47:51 cyliu7 Exp $
+;; $Id$
 ;;
 ;; utils introduced by cyliu
 ;;
@@ -121,3 +121,4 @@ you should invoke it when initialize emacs (put it in dot emacs file)."
     (x-restore-frame)))
 
 (provide 'cyliu-util)
+;; end of cyliu-util

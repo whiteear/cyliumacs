@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
+;; $Id$
 ;; emacs initialization 
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,17 +132,17 @@
                               (mode . perl-mode)))
                   ("elisp" (or (mode . emacs-lisp-mode)
                                (mode . lisp-interaction-mode)))
-                  ("dev" (or (mode . c++-mode)
-                             (mode . c-mode)
-                             (mode . java-mode)
-                             (mode . python-mode)
-                             (mode . shell-script-mode)
-                             (mode . diff-mode)))
-                  ("tags" (name . "^TAGS"))
-                  ("org" (or (mode . org-mode)
-                             (mode . muse-mode)
-                             ))
-                   ))))
+              ("dev" (or (mode . c++-mode)
+                         (mode . c-mode)
+                         (mode . java-mode)
+                         (mode . python-mode)
+                         (mode . shell-script-mode)
+                         (mode . diff-mode)))
+              ("tags" (name . "^TAGS"))
+              ("org" (or (mode . org-mode)
+                         (mode . muse-mode)
+                         ))
+               ))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido settting
@@ -157,17 +157,17 @@
 (defun ywb-dired-compress-dir ()
   (interactive)
   (let ((files (dired-get-marked-files t)))
-    (if (and (null (cdr files))
-             (string-match "\\.\\(tgz\\|tar\\.gz\\)" (car files)))
-        (shell-command (concat "tar -xvf " (car files)))
-      (let ((cfile (concat (file-name-nondirectory
-                            (if (null (cdr files))
-                                (car files)
-                              (directory-file-name default-directory))) ".tgz")))
-        (setq cfile
-              (read-from-minibuffer "Compress file name: " cfile))
-        (shell-command (concat "tar -zcf " cfile " " (mapconcat 'identity files " ")))))
-    (revert-buffer)))
+(if (and (null (cdr files))
+         (string-match "\\.\\(tgz\\|tar\\.gz\\)" (car files)))
+    (shell-command (concat "tar -xvf " (car files)))
+  (let ((cfile (concat (file-name-nondirectory
+                        (if (null (cdr files))
+                            (car files)
+                          (directory-file-name default-directory))) ".tgz")))
+    (setq cfile
+          (read-from-minibuffer "Compress file name: " cfile))
+    (shell-command (concat "tar -zcf " cfile " " (mapconcat 'identity files " ")))))
+(revert-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; goto marching paren
@@ -175,10 +175,10 @@
   "Go to the matching paren if on a paren; otherwise insert %."
   (interactive "p")
   (let ((prev-char (char-to-string (preceding-char)))
-        (next-char (char-to-string (following-char))))
-    (cond ((string-match "[[{(<]" next-char) (forward-sexp 1))
-          ((string-match "[\]})>]" prev-char) (backward-sexp 1))
-          (t (self-insert-command (or arg 1))))))
+    (next-char (char-to-string (following-char))))
+(cond ((string-match "[[{(<]" next-char) (forward-sexp 1))
+      ((string-match "[\]})>]" prev-char) (backward-sexp 1))
+      (t (self-insert-command (or arg 1))))))
 
 
 
@@ -193,20 +193,20 @@
 ;; dired setttings, use extrernal prog to open files
 (require 'dired-x)
 (dolist (file '(("evince" "\\.pdf$")
-                ("xdvi" "\\.dvi$")
-                ("gv" "\\.ps$" "\\.eps$")
-                ("unrar e" "\\.rar$")
-                ("gnochm" "\\.chm$")
-                ("mplayer" "\\.avi$" "\\.mpg$" "\\.wma$" )
-                ("eog" "\\.gif$" "\\.jpg$" "\\.tif$" "\\.jpeg$")
-                ("ooffice" "\\.doc$" "\\.ods$" "\\.odt$" "\\.ppt$" "\\.xls$")
-                ("gnumeric" "\\.xls$")
-                ("htmlview" "\\.html$" "\\.htm$" "\\.mht$")))
+            ("xdvi" "\\.dvi$")
+            ("gv" "\\.ps$" "\\.eps$")
+            ("unrar e" "\\.rar$")
+            ("gnochm" "\\.chm$")
+            ("mplayer" "\\.avi$" "\\.mpg$" "\\.wma$" )
+            ("eog" "\\.gif$" "\\.jpg$" "\\.tif$" "\\.jpeg$")
+            ("ooffice" "\\.doc$" "\\.ods$" "\\.odt$" "\\.ppt$" "\\.xls$")
+            ("gnumeric" "\\.xls$")
+            ("htmlview" "\\.html$" "\\.htm$" "\\.mht$")))
   (dolist (suf (cdr file))
-    (let ((prg (assoc suf dired-guess-shell-alist-default)))
-      (if prg
-          (setcdr prg (delete-dups (cons (car file) (cdr prg))))
-        (add-to-list 'dired-guess-shell-alist-default (list suf (car file)))))))
+(let ((prg (assoc suf dired-guess-shell-alist-default)))
+  (if prg
+      (setcdr prg (delete-dups (cons (car file) (cdr prg))))
+    (add-to-list 'dired-guess-shell-alist-default (list suf (car file)))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -238,12 +238,14 @@
 (defun make-some-files-read-only ()
   "when file opened is of a certain mode, make it read only"
   (when (memq major-mode '(c-mode c++-mode python-mode diff-mode
-                                  shell-script-mode makefile-mode
-                                  emacs-lisp-mode tcl-mode java-mode
-                                  org-mode xml-mode text-mode
-                                  tex-mode html-mode))
+                              sh-mode makefile-mode
+                              tcl-mode java-mode
+                              org-mode xml-mode
+                              tex-mode html-mode perl-mode
+                              emacs-lisp-mode js-mode))
     (toggle-read-only 1)))
 
 (add-hook 'find-file-hooks 'make-some-files-read-only)
 
 (provide 'cyliu-init)
+;;end of cyliu-init

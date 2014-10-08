@@ -1,5 +1,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; $Id$
 ;; cyliu's frame related settings
+;;
+;; these seeting are copied from several code snippet. I cannot
+;; remember all the authors. but I want to thanks for them here.
+;; also, my part is free to use in any cases.
+;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; face
@@ -77,11 +83,12 @@
     (require 'color-theme)
     (set-variable 'color-theme-is-global nil)
     (color-theme-initialize)
-    ;;(color-theme-classic)
+    (color-theme-classic)
     ;;(color-theme-dark-laptop)
     ;;(color-theme-gnome2)
     ;;(color-theme-blackboard)
-    (color-theme-arjen)
+    ;;(color-theme-arjen)
+    ;;(color-theme-shaman)
     ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -236,11 +243,21 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
       (progn
         (cyliu-gui-frame-keys)
         (cyliu-load-color-theme)
-        (set-frame-parameter nil 'alpha 50)
+        (set-frame-parameter nil 'alpha 98)
         (qiang-set-font
          '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=16"
          '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
     (progn
       (color-theme-pmade-terminal))))
 
+(if (and (fboundp 'daemonp) (daemonp))
+    (add-hook 'after-make-frame-functions
+                    (lambda (frame)
+                      (with-selected-frame frame
+                          (cyliu-init-frame))))
+  (cyliu-init-frame))
+
+(require 'golden-ratio)
+(golden-ratio-enable)
 (provide 'cyliu-frame)
+;; end of cyliu-frame

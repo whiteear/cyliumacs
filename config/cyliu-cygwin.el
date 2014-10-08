@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; $Id: cygwin.el,v 1.3 2009/11/03 03:05:27 cyliu7 Exp $
+;; $Id$
 ;; cyliu's emacs intergration config with cygwin
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -9,18 +9,18 @@
 (defun cyliu-cygwin-config ()
 
   (setenv "PATH" "")
-  (cyliu-add-to-env "PATH" (concat EMACS-HOME "/bin"))
-  (cyliu-add-to-env "PATH" (concat CYGWIN-HOME "/bin"))
-  (cyliu-add-to-env "PATH" (concat CYGWIN-HOME "/usr/bin"))
-  (cyliu-add-to-env "PATH" (concat CYGWIN-HOME "/usr/local/bin"))
-  (cyliu-add-to-env "PATH" (concat CYGWIN-HOME "/usr/sbin"))
+  (cyliu-add-to-env "PATH" (concat WINEMACS "/bin"))
+  (cyliu-add-to-env "PATH" (concat CYGWIN "/bin"))
+  (cyliu-add-to-env "PATH" (concat CYGWIN "/usr/bin"))
+  (cyliu-add-to-env "PATH" (concat CYGWIN "/usr/local/bin"))
+  (cyliu-add-to-env "PATH" (concat CYGWIN "/usr/sbin"))
   
   (setq exec-path (list 
-                   (concat EMACS-HOME "/bin")
-                   (concat CYGWIN-HOME "/bin")
-                   (concat CYGWIN-HOME "/usr/bin")
-                   (concat CYGWIN-HOME "/usr/sbin")
-                   (concat CYGWIN-HOME "/usr/local/bin")
+                   (concat WINEMACS "/bin")
+                   (concat CYGWIN "/bin")
+                   (concat CYGWIN "/usr/bin")
+                   (concat CYGWIN "/usr/sbin")
+                   (concat CYGWIN "/usr/local/bin")
                    ))
 
   (require 'cygwin-mount)
@@ -39,8 +39,9 @@
 ;; if the system is Windows and cygwin home setted, 
 ;; i assume that cygwin environment has been installed.
 ;; otherwise not installed.
-(if (and (cyliu-is-windows) CYGWIN-HOME)
+(if (and (cyliu-is-windows) CYGWIN)
     (cyliu-cygwin-config)
   )
 
 (provide 'cyliu-cygwin)
+;; end of cyliu-cygwin
